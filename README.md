@@ -61,3 +61,11 @@ to run the build version
 ```
 npm run serve:api-dist
 ```
+
+## Core
+
+The application follows the following formula
+
+![alt text](image.png)
+
+More about this can be found here [Core API Documentation](./core/README.md)

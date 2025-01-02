@@ -3,8 +3,7 @@ export default {
       "./test"
     ],
     "testMatch": [
-      "**/*.test.js",
-      "*.js"
+      "**/*.test.js"
     ],
     "moduleFileExtensions": [
       "js",
@@ -12,6 +11,6 @@ export default {
     ],
     "testEnvironment": "node",
     "transform": {
-      "^.+\\.js$": "babel-jest"
+      "^.+\\.js$":  ["babel-jest", { presets: ["@babel/preset-env"] }]
     }
 }

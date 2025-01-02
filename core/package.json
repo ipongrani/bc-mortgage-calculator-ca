@@ -1,18 +1,14 @@
 {
-  "name": "mortgage_calculator_api",
+  "name": "mortgage_calculator_core",
   "version": "1.0.0",
   "type": "module",
-  "description": "API component - calculator for BC Canada",
-  "main": "server.js",
+  "description": "Core component - calculator for BC Canada",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node ./server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rani Ipong",
   "license": "MIT",
-  "dependencies": {
-    "express": "^4.21.2"
-  },
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
