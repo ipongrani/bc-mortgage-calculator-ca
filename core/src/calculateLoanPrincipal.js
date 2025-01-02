@@ -1,11 +1,9 @@
-const isNonNegativeNumber = (value) => {
-    return typeof value === "number" && value >= 0 && !isNaN(value);
-}
+import utilities from "../../utilities/dist/utilities.bundle.js";
 
-const isEmpty = (value) => {
-    return !value;
-}
-
+const {
+    isEmpty,
+    isNonNegativeNumber
+} = utilities;
 
 /** 
  * @preserve
@@ -19,6 +17,7 @@ const isEmpty = (value) => {
  */
 
 export default (propertyPrice, downPayment) => {
+
     
     if (isEmpty(propertyPrice)) return ({error: 'property price is not invalid or not supplied'});
     if (isEmpty(downPayment)) return ({error: 'down payment is not invalid or not supplied'});

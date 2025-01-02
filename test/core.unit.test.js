@@ -3,7 +3,8 @@ import core from '../core/dist/core.bundle.js';
 
 const {
     calculateLoanPrincipal,
-    calculatePeriodicInterest
+    calculatePeriodicInterest,
+    calculateTotalNumberOfPayments
 } = core;
 
 describe('Core Functionality', () => {
@@ -17,6 +18,16 @@ describe('Core Functionality', () => {
 
     it('should return a positive float for 0.05 annual interest and monthly payment schedule', async () => {
         const response = calculatePeriodicInterest(0.05, 'monthly');
-        expect(response).toBe(0.42);
+        expect(response.periodicInterest).toBe(0.417);
+    });
+
+    it('should return a formatted percentage for 0.05 annual interest and monthly payment schedule', async () => {
+        const response = calculatePeriodicInterest(0.05, 'monthly');
+        expect(response.formattedPeriodicInterest).toBe("0.42%");
+    });
+
+    it('should return 300 total payments for 25 years ammortization and monthly payment schedule', async () => {
+        const response = calculateTotalNumberOfPayments(25, 'monthly');
+        expect(response).toBe(300);
     });
 })
