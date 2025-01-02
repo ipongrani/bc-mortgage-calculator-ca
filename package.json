@@ -9,12 +9,12 @@
     "test": "npx jest --config jest.config.js --verbose",
     "build": "./build.sh",
     "build:api": "cd api && npx webpack",
-    "build:core": "cd utilities && npx webpack",
-    "build:utilities": "cd core && npx webpack",
+    "build:core": "cd utils && npx webpack",
+    "build:utils": "cd core && npx webpack",
     "serve:api": "npx nodemon --exec node ./api/server.js",
     "serve:api-dist": "node ./api/dist/server.bundle.cjs",
     "serve:core": "cd ./core && npx nodemon --exec npx webpack --watch",
-    "serve:utilities": "cd ./utilities && npx nodemon --exec npx webpack --watch "
+    "serve:utils": "cd ./utils && npx nodemon --exec npx webpack --watch "
   },
   "author": "Rani Ipong",
   "license": "MIT",

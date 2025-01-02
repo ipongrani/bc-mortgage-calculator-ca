@@ -1,4 +1,4 @@
-import utilities from "../../utilities/dist/utilities.bundle.js";
+import utilities from "../../utils/dist/utilities.bundle.js";
 
 const {
     isEmpty,

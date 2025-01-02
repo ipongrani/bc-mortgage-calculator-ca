@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ./core && npx webpack
+cd ./utils && npx webpack
+cd ../core && npx webpack
 cd ../api && npx webpack
-cd ../utilities && npx webpack
+
 
