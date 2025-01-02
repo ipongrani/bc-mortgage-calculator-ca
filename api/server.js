@@ -7,7 +7,6 @@ app.use(express.json());
 
 // GET
 app.get('/', async (req, res) => {
-    console.log('request: ', req);
     return res.status(200).json({hello: 'world'});
 });
 
@@ -18,3 +17,6 @@ const server = app.listen(port, () => {
 });
 
 
+// Export the server and app for test
+export const expressApp = app;
+export const expressServer = server

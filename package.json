@@ -3,14 +3,24 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A mortgage calculator for BC Canada",
-  "main": "api/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node ./api/server.js"
+    "setup": "./setup.sh",
+    "test": "npx webpack && npx jest --config jest.config.js",
+    "build": "npx webpack",
+    "serve:api": "node ./api/server.js",
+    "serve:api-dist": "node ./api/dist/server.bundle.cjs"
   },
   "author": "Rani Ipong",
   "license": "MIT",
-  "dependencies": {
-    "express": "^4.21.2"
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-jest": "^29.7.0",
+    "babel-loader": "^9.2.1",
+    "jest": "^29.7.0",
+    "jest-webpack": "^0.5.1",
+    "supertest": "^7.0.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }
