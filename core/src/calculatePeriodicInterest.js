@@ -1,19 +1,11 @@
-const isNonNegativeNumber = (value) => {
-    return typeof value === "number" && value >= 0 && !isNaN(value);
-}
+import utilities from "../../utils/dist/utilities.bundle.js";
 
-const isEmpty = (value) => {
-    return !value;
-}
+const {
+    isEmpty,
+    isNonNegativeNumber,
+    formatToDecimalPoint
+} = utilities;
 
-
-const formatToTwoDecimals = (num) => {
-    const formattedNum = new Intl.NumberFormat('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    }).format(num);
-    return parseFloat(formattedNum);
-};
 
 
 /** 
@@ -44,7 +36,11 @@ export default (annualInterestRate, paymentSchedule) => {
     
 
     const selectedPaymentSchedule = payment_schedules[paymentSchedule];
-    const periodicInterest = formatToTwoDecimals(((annualInterestRate / selectedPaymentSchedule)*100));
+    const periodicInterest = formatToDecimalPoint((annualInterestRate / selectedPaymentSchedule)*100, 3);
+    const formattedPeriodicInterest = formatToDecimalPoint(periodicInterest, 2);
     
-    return periodicInterest;
+    return {
+        periodicInterest,
+        formattedPeriodicInterest: `${formattedPeriodicInterest}%`
+    };
 }
