@@ -2,7 +2,9 @@ import utilities from "../../utils/dist/utilities.bundle.js";
 
 const {
     isEmpty,
-    isNonNegativeNumber
+    isNonNegativeNumber,
+    validAmmortizationPeriod,
+    validatePaymentSchedule
 } = utilities;
 
 
@@ -20,23 +22,19 @@ const {
  * 
  */
 
-const payment_schedules = {
-    'accelerated-bi-weekly': 26,
-    'bi-weekly': 24,
-    'monthly': 12
-};
+
 
 export default (ammortizationPeriod, paymentSchedule) => {
     
     if (isEmpty(ammortizationPeriod)) return ({error: 'ammortization period is not valid or not supplied'});
-    if (isEmpty(paymentSchedule)) return ({error: 'payment schedule is not valid or not supplied'});
+    if (!validAmmortizationPeriod(ammortizationPeriod)) return ({error: 'ammortization period is not valid'});
     if (!isNonNegativeNumber(ammortizationPeriod)) return ({error: 'ammortization period is not a number'});
+    if (isEmpty(paymentSchedule)) return ({error: 'payment schedule is not valid or not supplied'});
 
-    const allowed_schedules = Object.keys(payment_schedules);
-    if (!allowed_schedules.includes(paymentSchedule)) return ({error: 'payment schedule is not valid or not supplied'});
-    
 
-    const selectedPaymentSchedule = payment_schedules[paymentSchedule];
+    const selectedPaymentSchedule = validatePaymentSchedule(paymentSchedule);
+    if (!selectedPaymentSchedule) return ({error: 'payment schedule is not valid or not supplied'});  
+
     const totalPaymentNumber = selectedPaymentSchedule * ammortizationPeriod;
     
     return totalPaymentNumber;

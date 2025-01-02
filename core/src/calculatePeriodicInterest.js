@@ -3,7 +3,8 @@ import utilities from "../../utils/dist/utilities.bundle.js";
 const {
     isEmpty,
     isNonNegativeNumber,
-    formatToDecimalPoint
+    formatToDecimalPoint,
+    validatePaymentSchedule
 } = utilities;
 
 
@@ -19,11 +20,6 @@ const {
  * 
  */
 
-const payment_schedules = {
-    'accelerated-bi-weekly': 26,
-    'bi-weekly': 24,
-    'monthly': 12
-};
 
 export default (annualInterestRate, paymentSchedule) => {
     
@@ -31,11 +27,10 @@ export default (annualInterestRate, paymentSchedule) => {
     if (isEmpty(paymentSchedule)) return ({error: 'payment schedule is not valid or not supplied'});
     if (!isNonNegativeNumber(annualInterestRate)) return ({error: 'property price is not a number'});
 
-    const allowed_schedules = Object.keys(payment_schedules);
-    if (!allowed_schedules.includes(paymentSchedule)) return ({error: 'payment schedule is not valid or not supplied'});
-    
+   
+    const selectedPaymentSchedule = validatePaymentSchedule(paymentSchedule);
+    if (!selectedPaymentSchedule) return ({error: 'payment schedule is not valid or not supplied'});  
 
-    const selectedPaymentSchedule = payment_schedules[paymentSchedule];
     const periodicInterest = formatToDecimalPoint((annualInterestRate / selectedPaymentSchedule)*100, 3);
     const formattedPeriodicInterest = formatToDecimalPoint(periodicInterest, 2);
     
