@@ -1,11 +1,16 @@
 {
   "name": "mortgage_calculator",
   "version": "1.0.0",
+  "type": "module",
   "description": "A mortgage calculator for BC Canada",
-  "main": "index.js",
+  "main": "api/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node ./api/server.js"
   },
   "author": "Rani Ipong",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
