@@ -32,3 +32,32 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - babel-loader
 - jest-webpack
 - supertest
+
+
+## Setup
+
+Please make sure the *setup.sh* has enough privilege. Otherwise can be performed with the following command in Linux Terminal
+```
+sudo chmod +x ./setup.sh
+```
+and then run
+```
+npm run setup
+```
+The script will install the necessary dependencies for the application to run.
+
+## Build
+```
+npm run build
+```
+
+## Running API
+
+to run the development version
+```
+npm run serve:api
+```
+to run the build version
+```
+npm run serve:api-dist
+```
