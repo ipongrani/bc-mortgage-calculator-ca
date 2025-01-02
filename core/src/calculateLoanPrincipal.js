@@ -6,6 +6,18 @@ const isEmpty = (value) => {
     return !value;
 }
 
+
+/** 
+ * @preserve
+ * Calculates the loan principal amount.
+ * 
+ * @param {number} propertyPrice - The amount paid monthly.
+ * @param {number} downPayment - The annual interest rate (in decimal form, e.g., 0.05 for 5%).
+ *
+ * @returns {number} The calculated loan principal.
+ * 
+ */
+
 export default (propertyPrice, downPayment) => {
     
     if (isEmpty(propertyPrice)) return ({error: 'property price is not invalid or not supplied'});

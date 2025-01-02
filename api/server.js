@@ -9,7 +9,6 @@ app.use(express.json());
 
 // GET
 app.get('/', async (req, res) => {
-    console.log('====== core: ', core);
     return res.status(200).json({hello: "world"});
 });
 

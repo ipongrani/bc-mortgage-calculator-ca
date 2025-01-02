@@ -10,7 +10,7 @@ export default {
     libraryTarget: "commonjs2",
   },
   resolve: {
-    extensions: [".js"], // Automatically resolve .js files
+    extensions: [".js"]
   },
   module: {
     rules: [

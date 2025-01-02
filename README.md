@@ -32,6 +32,7 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - babel-loader
 - jest-webpack
 - supertest
+- nodemon
 
 
 ## Setup
@@ -69,3 +70,10 @@ The application follows the following formula
 ![alt text](image.png)
 
 More about this can be found here [Core API Documentation](./core/README.md)
+
+## Running Core
+
+to run the development version
+```
+npm run serve:core
+```
