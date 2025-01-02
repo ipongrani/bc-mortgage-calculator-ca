@@ -1,4 +1,5 @@
 import path from "path";
+import TerserPlugin from "terser-webpack-plugin";
 
 export default {
   mode: "development",
@@ -14,6 +15,19 @@ export default {
   experiments: {
     outputModule: true,
   },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          format: {
+            comments: /@preserve|@license|@description/,
+          },
+        },
+        extractComments: false
+      }),
+    ],
+  },
   module: {
     rules: [
       {
@@ -22,7 +36,8 @@ export default {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"]
+            presets: ["@babel/preset-env"],
+            comments: true
           },
         },
       },

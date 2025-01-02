@@ -6,11 +6,13 @@
   "main": "index.js",
   "scripts": {
     "setup": "./setup.sh",
-    "test": "npx jest --config jest.config.js",
+    "test": "npx jest --config jest.config.js --verbose",
+    "build": "./build.sh",
     "build:api": "cd api && npx webpack",
     "build:core": "cd core && npx webpack",
     "serve:api": "npx nodemon --exec node ./api/server.js",
-    "serve:api-dist": "node ./api/dist/server.bundle.cjs"
+    "serve:api-dist": "node ./api/dist/server.bundle.cjs",
+    "serve:core": "cd ./core && npx nodemon --exec npx webpack"
   },
   "author": "Rani Ipong",
   "license": "MIT",
