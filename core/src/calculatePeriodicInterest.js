@@ -46,5 +46,5 @@ export default (annualInterestRate, paymentSchedule) => {
     const selectedPaymentSchedule = payment_schedules[paymentSchedule];
     const periodicInterest = formatToTwoDecimals(((annualInterestRate / selectedPaymentSchedule)*100));
     
-    return periodicInterest;
+    return periodicInterest
 }
