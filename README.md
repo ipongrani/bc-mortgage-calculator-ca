@@ -20,5 +20,5 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - An error if the inputs are not valid. This includes cases where the down payment is not large enough.
 
 ### Requirements:
-- Node.js
+- Node.js (V20.12.0 LTS)
 - Express.js
