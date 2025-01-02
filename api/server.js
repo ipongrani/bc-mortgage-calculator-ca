@@ -1,4 +1,6 @@
 import express from 'express';
+import core from '../core/dist/core.bundle.js';
+
 const app = express();
 const port = 3000;
 
@@ -7,7 +9,8 @@ app.use(express.json());
 
 // GET
 app.get('/', async (req, res) => {
-    return res.status(200).json({hello: 'world'});
+    console.log('====== core: ', core);
+    return res.status(200).json({hello: "world"});
 });
 
 

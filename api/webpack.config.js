@@ -3,11 +3,14 @@ import path from "path";
 export default {
   mode: "development",
   target: "node",
-  entry: "./api/server.js",
+  entry: "./server.js",
   output: {
-    path: path.resolve("api", "dist"),
-    filename: "server.bundle.cjs",
+    path: path.resolve("dist"),
+    filename: "api.bundle.cjs",
     libraryTarget: "commonjs2",
+  },
+  resolve: {
+    extensions: [".js"], // Automatically resolve .js files
   },
   module: {
     rules: [
