@@ -1,11 +1,15 @@
 import core from '../core/dist/core.bundle.js';
 
+
+
 const {
     calculateLoanPrincipal,
     calculatePeriodicInterest,
     calculateTotalNumberOfPayments,
     calculateMortage
 } = core;
+
+
 
 describe('Core Functionality', () => {
 
