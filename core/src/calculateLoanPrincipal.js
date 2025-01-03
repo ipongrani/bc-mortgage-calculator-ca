@@ -2,7 +2,8 @@ import utilities from "../../utils/dist/utilities.bundle.js";
 
 const {
     isEmpty,
-    isNonNegativeNumber
+    isNonNegativeNumber,
+    formatToDecimalPoint
 } = utilities;
 
 /** 
@@ -26,6 +27,12 @@ export default (propertyPrice, downPayment) => {
     if (downPayment > propertyPrice) return ({error: 'down payment is over property price'});
 
     const loanPrincipal = propertyPrice - downPayment;
+    const downpaymentPercentage = formatToDecimalPoint((downPayment / propertyPrice), 6);
+    const formattedDownpaymentPercentage = formatToDecimalPoint((downpaymentPercentage*100), 2)
     
-    return loanPrincipal;
+    return {
+        loanPrincipal,
+        downpaymentPercentage,
+        formattedDownpaymentPercentage: `${formattedDownpaymentPercentage}%`,
+    };
 }

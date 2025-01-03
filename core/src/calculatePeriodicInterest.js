@@ -31,8 +31,8 @@ export default (annualInterestRate, paymentSchedule) => {
     const selectedPaymentSchedule = validatePaymentSchedule(paymentSchedule);
     if (!selectedPaymentSchedule) return ({error: 'payment schedule is not valid or not supplied'});  
 
-    const periodicInterest = formatToDecimalPoint((annualInterestRate / selectedPaymentSchedule)*100, 3);
-    const formattedPeriodicInterest = formatToDecimalPoint(periodicInterest, 2);
+    const periodicInterest = formatToDecimalPoint((annualInterestRate / selectedPaymentSchedule), 6);
+    const formattedPeriodicInterest = formatToDecimalPoint((periodicInterest*100), 2);
     
     return {
         periodicInterest,

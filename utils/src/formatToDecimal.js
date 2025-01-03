@@ -1,14 +1,15 @@
 const formatToDecimalPoint = (num, decimalPoint) => {
 
-    const isValidDecimalPoint = parseInt(decimalPoint) || false;
-
+    const isValidDecimalPoint = Number.isInteger(Number(decimalPoint)) && decimalPoint >= 0;
+    
     if (!isValidDecimalPoint) return null;
 
     const formattedNum = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: decimalPoint,
         maximumFractionDigits: decimalPoint,
     }).format(num);
-    return parseFloat(formattedNum);
+    const cleanedNum = formattedNum.replace(/,/g, ''); 
+    return parseFloat(cleanedNum);
 };
 
 
