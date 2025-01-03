@@ -26,7 +26,7 @@ const {
 
 
 export default (P, r, n) => {
-    
+
     if (isEmpty(P)) return ({error: 'loan amount is not valid or not supplied'});
     if (isEmpty(r)) return ({error: 'annual interest is not valid or not supplied'});
     if (isEmpty(n)) return ({error: 'payment schedule is not valid or not supplied'});
@@ -39,8 +39,7 @@ export default (P, r, n) => {
     const x = r*((1+r)**n);
     const y = ((1+r)**n)-1;
     const _M = P*(x/y);
-    console.log('_M: ', _M);
     const mortgagePaymentPerPeriod = formatToDecimalPoint(_M, 2);
-    console.log('mortgagePaymentPerPeriod: ', mortgagePaymentPerPeriod);
+
     return mortgagePaymentPerPeriod;
 }

@@ -1,6 +1,6 @@
 const validAmmortizationPeriod = (value) => {
-   
-   if (!Number.isInteger(value)) {
+
+    if (!Number.isInteger(value)) {
         return false;
     }
 

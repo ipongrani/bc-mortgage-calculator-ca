@@ -9,7 +9,7 @@ const validatePaymentSchedule = (paymentSchedule) => {
     const allowed_schedules = Object.keys(payment_schedules);
     if (!allowed_schedules.includes(paymentSchedule)) return false;
 
-    const selectedPaymentSchedule = payment_schedules[paymentSchedule];
+    const selectedPaymentSchedule = payment_schedules[paymentSchedule] || null;
     
     return selectedPaymentSchedule;
  }

@@ -22,8 +22,8 @@ export default (propertyPrice, downPayment) => {
     
     if (isEmpty(propertyPrice)) return ({error: 'property price is not invalid or not supplied'});
     if (isEmpty(downPayment)) return ({error: 'down payment is not invalid or not supplied'});
-    if (!isNonNegativeNumber(propertyPrice)) return ({error: 'property price is not a number'});
-    if (!isNonNegativeNumber(downPayment)) return ({error: 'down payment is not a number'});
+    if (!isNonNegativeNumber(propertyPrice)) return ({error: 'property price is not a valid number'});
+    if (!isNonNegativeNumber(downPayment)) return ({error: 'down payment is not a valid number'});
     if (downPayment > propertyPrice) return ({error: 'down payment is over property price'});
 
     const loanPrincipal = propertyPrice - downPayment;
