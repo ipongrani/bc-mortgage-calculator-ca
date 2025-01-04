@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "setup": "./setup.sh",
-    "test": "npx jest --config jest.config.js --verbose",
+    "test": "./testAll.sh",
+    "test:unit": "npx jest --config jest.config.js ./test/unit.test.js --verbose",
+    "test:integration": "npx jest --config jest.config.js ./test/integration.test.js --verbose",
     "build": "./build.sh",
     "build:api": "cd api && npx webpack",
     "build:core": "cd core && npx webpack",

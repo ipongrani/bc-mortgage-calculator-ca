@@ -1,4 +1,5 @@
 import utilities from "../../utils/dist/utilities.bundle.js";
+import cmhcPremiumCalculator from "./cmhcPremiumCalculator.js";
 
 const {
     isEmpty,
@@ -13,7 +14,7 @@ const {
  * @param {number} propertyPrice - The amount paid monthly.
  * @param {number} downPayment - The annual interest rate (in decimal form, e.g., 0.05 for 5%).
  *
- * @returns {number} The calculated loan principal.
+ * @returns {object} The calculated loanPrincipal, downpaymentRate, downpaymentPercentage.
  * 
  */
 
@@ -27,12 +28,14 @@ export default (propertyPrice, downPayment) => {
     if (downPayment > propertyPrice) return ({error: 'down payment is over property price'});
 
     const loanPrincipal = propertyPrice - downPayment;
-    const downpaymentPercentage = formatToDecimalPoint((downPayment / propertyPrice), 6);
-    const formattedDownpaymentPercentage = formatToDecimalPoint((downpaymentPercentage*100), 2)
+    const downpaymentRate = formatToDecimalPoint((downPayment / propertyPrice), 6);
+    const downpaymentPercentage = formatToDecimalPoint((downpaymentRate*100), 2)
     
+  
+
     return {
         loanPrincipal,
-        downpaymentPercentage,
-        formattedDownpaymentPercentage: `${formattedDownpaymentPercentage}%`,
+        downpaymentRate,
+        downpaymentPercentage: `${downpaymentPercentage}%`
     };
 }

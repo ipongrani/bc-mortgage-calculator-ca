@@ -1,7 +1,7 @@
 
 
-import core from '../core/index.js';
-import utilities from '../utils/dist/utilities.bundle.js';
+import core from '../../core/index.js';
+import utilities from '../../utils/dist/utilities.bundle.js';
 
 
 const {
@@ -9,7 +9,7 @@ const {
 } = core;
 
 
-jest.mock('../utils/dist/utilities.bundle.js', () => ({
+jest.mock('../../utils/dist/utilities.bundle.js', () => ({
     isEmpty: jest.fn(),
     isNonNegativeNumber: jest.fn(),
     formatToDecimalPoint: jest.fn(),
@@ -65,8 +65,10 @@ describe('Core: Calculate Loan Principal', () => {
 
 
     test('should return error if downPayment is not a non-negative number', () => {
-        isEmpty.mockReturnValueOnce(false).mockReturnValueOnce(false);
-        isNonNegativeNumber.mockReturnValueOnce(true).mockReturnValueOnce(false);
+        isEmpty.mockReturnValueOnce(false)
+                .mockReturnValueOnce(false);
+        isNonNegativeNumber.mockReturnValueOnce(true)
+                            .mockReturnValueOnce(false);
 
         const response = calculateLoanPrincipal(200000, -5000);
 
@@ -76,8 +78,10 @@ describe('Core: Calculate Loan Principal', () => {
 
 
     test('should return error if downPayment is greater than propertyPrice', () => {
-        isEmpty.mockReturnValueOnce(false).mockReturnValueOnce(false);
-        isNonNegativeNumber.mockReturnValueOnce(true).mockReturnValueOnce(true);
+        isEmpty.mockReturnValueOnce(false)
+                .mockReturnValueOnce(false);
+        isNonNegativeNumber.mockReturnValueOnce(true)
+                            .mockReturnValueOnce(true);
 
         const response = calculateLoanPrincipal(200000, 250000);
 
@@ -86,8 +90,10 @@ describe('Core: Calculate Loan Principal', () => {
 
 
     test('should calculate loan details correctly', () => {
-        isEmpty.mockReturnValueOnce(false).mockReturnValueOnce(false);
-        isNonNegativeNumber.mockReturnValueOnce(true).mockReturnValueOnce(true);
+        isEmpty.mockReturnValueOnce(false)
+                .mockReturnValueOnce(false);
+        isNonNegativeNumber.mockReturnValueOnce(true)
+                            .mockReturnValueOnce(true);
         formatToDecimalPoint
             .mockReturnValueOnce(0.2) 
             .mockReturnValueOnce(20.0); 
@@ -96,8 +102,8 @@ describe('Core: Calculate Loan Principal', () => {
 
         expect(response).toEqual({
             loanPrincipal: 8,
-            downpaymentPercentage: 0.2,
-            formattedDownpaymentPercentage: '20%',
+            downpaymentRate: 0.2,
+            downpaymentPercentage: '20%'
         });
         expect(formatToDecimalPoint).toHaveBeenCalledWith(0.2, 6);
         expect(formatToDecimalPoint).toHaveBeenCalledWith(20.0, 2);

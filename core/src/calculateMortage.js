@@ -16,7 +16,7 @@ const {
  * y = ((1+r)**n)-1
  * M = P*(x/y)
  * 
- * @param {number} P - The loan amount after subtracting the down payment.
+ * @param {number} P - Loan Principal. The loan amount after subtracting the down payment.
  * @param {number} r - The annual interest rate divided by the number of payments per year (periodicInterest).
  * @param {number} n - The total number of payments over the amortization period.
  *

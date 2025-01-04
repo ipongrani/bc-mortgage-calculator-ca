@@ -16,7 +16,7 @@ const {
  * @param {number} annualInterestRate - The interest rate yearly. The annual interest rate (in decimal form, e.g., 0.05 for 5%)
  * @param {number} paymentSchedule - accelerated-bi-weekly, bi-weekly, monthly
  *
- * @returns {number} The calculated periodic interest.
+ * @returns {object} returns periodicInterestRate, formattedPeriodicInterest
  * 
  */
 
@@ -35,7 +35,7 @@ export default (annualInterestRate, paymentSchedule) => {
     const formattedPeriodicInterest = formatToDecimalPoint((periodicInterest*100), 2);
     
     return {
-        periodicInterest,
+        periodicInterestRate: periodicInterest,
         formattedPeriodicInterest: `${formattedPeriodicInterest}%`
     };
 }

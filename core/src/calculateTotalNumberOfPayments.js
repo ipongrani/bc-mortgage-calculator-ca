@@ -18,7 +18,7 @@ const {
  * @param {number} ammortizationPeriod - ammortization period ex. 25, 30, 40 (years).
  * @param {number} paymentSchedule - accelerated-bi-weekly, bi-weekly, monthly
  *
- * @returns {number} The calculated total number of payments.
+ * @returns {number} The calculated total count of payments.
  * 
  */
 
@@ -35,7 +35,7 @@ export default (ammortizationPeriod, paymentSchedule) => {
     const selectedPaymentSchedule = validatePaymentSchedule(paymentSchedule);
     if (!selectedPaymentSchedule) return ({error: 'payment schedule is not valid or not supplied'});  
 
-    const totalPaymentNumber = selectedPaymentSchedule * ammortizationPeriod;
+    const totalPaymentCount = selectedPaymentSchedule * ammortizationPeriod;
     
-    return totalPaymentNumber;
+    return totalPaymentCount;
 }
