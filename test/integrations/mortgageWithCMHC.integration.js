@@ -8,7 +8,10 @@ import sampleInput3 from '../samples/sampleInput3.json';
 
 const {
     calculateLoanPrincipal,
-    cmhcPremiumCalculator
+    cmhcPremiumCalculator,
+    calculatePeriodicInterest,
+    calculateTotalNumberOfPayments,
+    calculateMortage
 } = core;
 
 
@@ -26,54 +29,25 @@ const testCases = [
 
 const cmhcThreshold = 0.2;
 
-export const integrations_loanPrincipalWithCMHC = () => describe('Integrations: Calculate Loan Principal and CMHC rates', () => {
+export const integrations_mortgageWithCMHC = () => describe('Integrations: Calculate Mortgage and CMHC rates', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
-    test.each(testCases)('SAMPLE Property Price: $propertyPrice | Down Payment: $downPayment - Should correctly identify if CMHC is required or not', (sampleCase) => {
+    test.each(testCases)('SAMPLE Property Price: $propertyPrice | Down Payment: $downPayment - Mortgage payment per schedule with CMHC should be greater than initial amount', (sampleCase) => {
         
         const {
             propertyPrice,
             downPayment,
             loanPrincipal,
             downpaymentRate,
-            downpaymentPercentage
-        } = sampleCase;
-    
-        const cleanPropertPrice = convertCurrencyToNumber(propertyPrice);
-        const cleanDownpayment = convertCurrencyToNumber(downPayment);
-    
-        const response = calculateLoanPrincipal(cleanPropertPrice, cleanDownpayment);
-
-        expect(response).toEqual({
-            loanPrincipal: loanPrincipal,
-            downpaymentRate: downpaymentRate,
-            downpaymentPercentage: downpaymentPercentage
-        });
-
-        const cmhcPremium = cmhcPremiumCalculator(loanPrincipal, downpaymentRate);
-
-
-        if (downpaymentRate < cmhcThreshold) {
-            expect(typeof cmhcPremium).toBe('object');
-            expect(cmhcPremium).not.toBeNull();
-            expect(Array.isArray(cmhcPremium)).toBe(false);
-        } else {
-            expect(cmhcPremium).toBeNull();
-        }
-    });
-
-
-    test.each(testCases)('SAMPLE Property Price: $propertyPrice | Down Payment: $downPayment - Should correctly calculate CMHC rate.', (sampleCase) => {
-        
-        const {
-            propertyPrice,
-            downPayment,
-            loanPrincipal,
-            downpaymentRate,
-            downpaymentPercentage
+            downpaymentPercentage,
+            annualInterestRate,
+            paymentSchedule,
+            ammortizationPeriod,
+            totalCountPayments,
+            paymentPerSchedule
         } = sampleCase;
     
         const cleanPropertPrice = convertCurrencyToNumber(propertyPrice);
@@ -89,7 +63,7 @@ export const integrations_loanPrincipalWithCMHC = () => describe('Integrations: 
 
         const calculatedCmhcPremium = cmhcPremiumCalculator(loanPrincipal, downpaymentRate);
 
-        
+
         if (downpaymentRate < cmhcThreshold) {
             expect(typeof calculatedCmhcPremium).toBe('object');
             expect(calculatedCmhcPremium).not.toBeNull();
@@ -101,6 +75,24 @@ export const integrations_loanPrincipalWithCMHC = () => describe('Integrations: 
             expect(calculatedCmhcPremium).toEqual(cmhcPremium);
         } else {
             expect(calculatedCmhcPremium).toBeNull();
+        }
+
+        const usePrincipal = calculatedCmhcPremium ? calculatedCmhcPremium.principalWithPremium : loanPrincipal;
+
+        const { periodicInterestRate } = calculatePeriodicInterest(annualInterestRate, paymentSchedule);
+        expect(periodicInterestRate).toBeGreaterThan(0);
+
+        const totalNumberOfPayments = calculateTotalNumberOfPayments(ammortizationPeriod, paymentSchedule);
+        expect(totalNumberOfPayments).toEqual(totalCountPayments);
+
+        const computedPaymentPerSchedule = calculateMortage(usePrincipal, periodicInterestRate, totalNumberOfPayments);
+        expect(computedPaymentPerSchedule).toBeGreaterThan(0);
+
+        if (downpaymentRate < cmhcThreshold) {
+            expect(computedPaymentPerSchedule).toBeGreaterThan(paymentPerSchedule);
+        } else {
+            const { paymentPerSchedule } = sampleCase;
+            expect(computedPaymentPerSchedule).toEqual(paymentPerSchedule);
         }
     });
 

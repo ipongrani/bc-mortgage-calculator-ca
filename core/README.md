@@ -16,11 +16,11 @@ In this codebase, the core components contains the necessary *Calculators* for  
 
 ### P (Principal loan amount)
 
-It Can be derived using *P = Property Price − Down Payment* and is computed in the system using `core.calculateLoanPrincipal`. the function accepts two arguments, `propertyPrice` and `downPayment` and returns an OBJECT with the following keys `loanPrincipal`, `downpaymentRate`, `downpaymentPercentage`.
+It Can be derived using *P = Property Price − Down Payment* and is computed in the system using `core.calculateLoanPrincipal`. the function accepts two arguments, `propertyPrice` and `downPayment` and returns an OBJECT with the following properties `loanPrincipal`, `downpaymentRate`, `downpaymentPercentage`.
 
 ### r (Periodic Interest Rate)
 
-The periodic interest rate is derived using *r = annual Interest Rate / payments per year*. This is computed using `core.calculatePeriodicInterest` which accpets user supplied `annualInterestRate` and a *PAYMENT SCHEDULE* which can be `monthly`, `bi-weekly`, or `accelerated-bi-weekly`. The function will return an OBJECT with the following keys `periodicInterestRate`, `formattedPeriodicInterest`.
+The periodic interest rate is derived using *r = annual Interest Rate / payments per year*. This is computed using `core.calculatePeriodicInterest` which accpets user supplied `annualInterestRate` and a *PAYMENT SCHEDULE* which can be `monthly`, `bi-weekly`, or `accelerated-bi-weekly`. The function will return an OBJECT with the following properties `periodicInterestRate`, `formattedPeriodicInterest`.
 
 ### n (Total Number of Payments)
 
@@ -47,3 +47,5 @@ The premium rate is based off of the *down payment percentage* and is determined
 | 10% - 14.99%                       | 3.10%  
 | 15% - 19.99%                       | 2.80%   
 | 20% or higher                      | 0%
+
+The function `core.cmhcPremiumCalculator` and accepts `loanPrincipal`, and `downpaymentRate`. The returned OBJECT will contain the following properties `premiumRate`, `premiumPercent`, `premiumAmount`, `principalWithPremium`.

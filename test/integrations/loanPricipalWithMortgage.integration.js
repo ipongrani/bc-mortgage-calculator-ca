@@ -34,7 +34,7 @@ export const integrations_loanPrincipalWithMortgage = () => describe('Integratio
         jest.clearAllMocks();
     });
 
-    test.each(testCases)('SAMPLE Property Price: $propertyPrice | Down Payment: $downPayment - Should correctly calculate payment per schedule', (sampleCase) => {
+    test.each(testCases)('SAMPLE Property Price: $propertyPrice | Down Payment: $downPayment | Payment Schedule: $paymentSchedule - Should correctly calculate payment per schedule', (sampleCase) => {
         
         const {
             propertyPrice,
