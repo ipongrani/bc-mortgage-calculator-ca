@@ -1,4 +1,4 @@
-name: Run Jest Tests on Pull Request
+name: jest-test-on-pr
 
 on:
   pull_request:

@@ -1,8 +1,8 @@
 
 
-import core from '../core/index.js';
-import utilities from '../utils/dist/utilities.bundle.js';
-import sampleInput1 from './samples/sampleInput1.json';
+import core from '../../core/index.js';
+import utilities from '../../utils/dist/utilities.bundle.js';
+
 
 
 const {
@@ -10,20 +10,7 @@ const {
 } = core;
 
 
-
-const {
-    propertyPrice,
-    downPayment,
-    loanPrincipal,
-    annualInterestRate,
-    paymentSchedule,
-    ammortizationPeriod,
-    totalPayments,
-    periodicInterestRate,
-    paymentPerSchedule
-} = sampleInput1;
-
-jest.mock('../utils/dist/utilities.bundle.js', () => ({
+jest.mock('../../utils/dist/utilities.bundle.js', () => ({
     isEmpty: jest.fn(),
     isNonNegativeNumber: jest.fn(),
     formatToDecimalPoint: jest.fn(),
@@ -37,7 +24,7 @@ const {
 
 
 
-describe('Core: Calculate Mortgage', () => {
+export const core_calculateMortgage = () => describe('Core: Calculate Mortgage', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();

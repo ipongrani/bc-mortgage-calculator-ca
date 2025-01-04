@@ -1,0 +1,13 @@
+{
+    "propertyPrice": "$750,000",
+    "downPayment": "$120,000",
+    "downpaymentRate": 0.16,
+    "downpaymentPercentage": "16%",
+    "loanPrincipal": 630000,
+    "annualInterestRate": 0.05,
+    "paymentSchedule": "monthly",
+    "ammortizationPeriod": 25,
+    "totalCountPayments": 300,
+    "periodicInterestRate": 0.004167,
+    "paymentPerSchedule": 3683.06
+}

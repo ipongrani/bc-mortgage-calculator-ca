@@ -1,4 +1,4 @@
-import utilities from "../utils";
+import utilities from "../../utils";
 
 
 const {
@@ -62,6 +62,12 @@ describe('Utilities: formatToDecimalPoint', () => {
 
         const response3 = formatToDecimalPoint(100.42256, 3);
         expect(response3).toBe(100.423);
+
+        const response4 = formatToDecimalPoint(42000, 2);
+        expect(response4).toBe(42000);
+
+        const response5 = formatToDecimalPoint(40000, 2);
+        expect(response5).toBe(40000);
     });
 })
 
