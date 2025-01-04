@@ -49,7 +49,7 @@ export const core_calculateMortgage = () => describe('Core: Calculate Mortgage',
 
         expect(isEmpty).toHaveBeenCalledWith(400000);
         expect(isEmpty).toHaveBeenCalledWith(null);
-        expect(response).toEqual({ error: 'annual interest is not valid or not supplied' });
+        expect(response).toEqual({ error: 'periodic interest is not valid or not supplied' });
     }); 
 
 
@@ -102,7 +102,7 @@ export const core_calculateMortgage = () => describe('Core: Calculate Mortgage',
         expect(isEmpty).toHaveBeenCalledWith(300);
         expect(isNonNegativeNumber).toHaveBeenCalledWith(400000);
         expect(isNonNegativeNumber).toHaveBeenCalledWith(-0.004167);
-        expect(response).toEqual({ error: 'annual interest is not a valid number' });
+        expect(response).toEqual({ error: 'periodic interest is not a valid number' });
     });
 
 

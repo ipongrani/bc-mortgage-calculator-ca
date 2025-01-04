@@ -8,11 +8,11 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - The API accepts the following json payload via *http POST Method*:
 ```
 {
-    property_price: <Number> (property price),
-    down_payment: <Number> (down payment amount),
-    annual_interest_rate: <Number> (annual interest rate),
-    ammortization_period: <Integer> (5 year increments between 5 and 30 years),
-    payment_schedule: <String> (accelerated bi-weekly, bi-weekly, monthly)
+    propertyPrice: <Number> (property price),
+    downPayment: <Number> (down payment amount),
+    annualInterestRate: <Number> (annual interest rate),
+    ammortizationPeriod: <Integer> (5 year increments between 5 and 30 years),
+    paymentSchedule: <String> (accelerated bi-weekly, bi-weekly, monthly)
 }
 ```
 ### Response:
