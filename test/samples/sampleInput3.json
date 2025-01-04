@@ -1,0 +1,13 @@
+{
+    "propertyPrice": "$920,000",
+    "downPayment": "$73,600",
+    "downpaymentRate": 0.08,
+    "downpaymentPercentage": "8%",
+    "loanPrincipal": 846400,
+    "annualInterestRate": 0.05,
+    "paymentSchedule": "monthly",
+    "ammortizationPeriod": 25,
+    "totalCountPayments": 300,
+    "periodicInterestRate": 0.004167,
+    "paymentPerSchedule": 4948.17
+}
