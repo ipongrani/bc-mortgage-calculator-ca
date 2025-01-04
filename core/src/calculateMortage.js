@@ -28,11 +28,11 @@ const {
 export default (P, r, n) => {
 
     if (isEmpty(P)) return ({error: 'loan amount is not valid or not supplied'});
-    if (isEmpty(r)) return ({error: 'annual interest is not valid or not supplied'});
+    if (isEmpty(r)) return ({error: 'periodic interest is not valid or not supplied'});
     if (isEmpty(n)) return ({error: 'payment schedule is not valid or not supplied'});
 
     if (!isNonNegativeNumber(P)) return ({error: 'loan amount is not a valid number'});
-    if (!isNonNegativeNumber(r)) return ({error: 'annual interest is not a valid number'});
+    if (!isNonNegativeNumber(r)) return ({error: 'periodic interest is not a valid number'});
     if (!isNonNegativeNumber(n)) return ({error: 'payment schedule is not a valid number'});
 
 

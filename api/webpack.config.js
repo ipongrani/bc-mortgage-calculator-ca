@@ -6,7 +6,7 @@ export default {
   entry: "./server.js",
   output: {
     path: path.resolve("dist"),
-    filename: "api.bundle.cjs",
+    filename: "api.bundle.js",
     libraryTarget: "commonjs2",
   },
   resolve: {

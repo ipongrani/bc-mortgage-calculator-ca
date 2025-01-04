@@ -87,7 +87,7 @@ export const integrations_mortgageWithCMHC = () => describe('Integrations: Calcu
 
         const computedPaymentPerSchedule = calculateMortage(usePrincipal, periodicInterestRate, totalNumberOfPayments);
         expect(computedPaymentPerSchedule).toBeGreaterThan(0);
-
+        
         if (downpaymentRate < cmhcThreshold) {
             expect(computedPaymentPerSchedule).toBeGreaterThan(paymentPerSchedule);
         } else {

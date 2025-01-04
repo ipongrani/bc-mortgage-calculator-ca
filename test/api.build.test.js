@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { expressApp, expressServer } from '../api/dist/api.bundle.cjs';
+import { expressApp, expressServer } from '../api/dist/api.bundle.js';
 
 
 describe('Express Server', () => {
