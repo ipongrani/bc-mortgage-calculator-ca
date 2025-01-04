@@ -9,5 +9,11 @@
     "ammortizationPeriod": 25,
     "totalCountPayments": 300,
     "periodicInterestRate": 0.004167,
-    "paymentPerSchedule": 4948.17
+    "paymentPerSchedule": 4948.17,
+    "cmhcPremium":  {
+        "premiumRate": 0.04,
+        "premiumPercent": "4%",
+        "premiumAmount": 33856,
+        "principalWithPremium": 880256
+      }
 }
