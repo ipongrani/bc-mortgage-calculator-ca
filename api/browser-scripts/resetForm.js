@@ -5,7 +5,7 @@ export default function resetForm(event) {
     collectInputs.forEach((element) => {
         element.value = '';
     });
-    paymentSchedule.selectedIndex = 1;
+    paymentSchedule.selectedIndex = 0;
     const displayPanel = document.querySelector('#displayPanel');
     displayPanel.innerHTML = '';
     displayPanel.style.visibility = 'hidden'

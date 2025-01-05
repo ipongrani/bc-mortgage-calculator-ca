@@ -76,7 +76,7 @@ function resetForm(event) {
   collectInputs.forEach(function (element) {
     element.value = '';
   });
-  paymentSchedule.selectedIndex = 1;
+  paymentSchedule.selectedIndex = 0;
   var displayPanel = document.querySelector('#displayPanel');
   displayPanel.innerHTML = '';
   displayPanel.style.visibility = 'hidden';
@@ -236,9 +236,10 @@ function _submitForm() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
+          _context.prev = 0;
           event.preventDefault();
           userInputs = (0,_collectInputs_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
-          _context.next = 4;
+          _context.next = 5;
           return fetch('/calculateMortgage', {
             method: 'post',
             headers: {
@@ -246,18 +247,24 @@ function _submitForm() {
             },
             body: JSON.stringify(userInputs)
           });
-        case 4:
+        case 5:
           response = _context.sent;
-          _context.next = 7;
+          _context.next = 8;
           return response.json();
-        case 7:
+        case 8:
           jsonResponse = _context.sent;
           (0,_resultFormatter_js__WEBPACK_IMPORTED_MODULE_0__["default"])(jsonResponse);
-        case 9:
+          _context.next = 15;
+          break;
+        case 12:
+          _context.prev = 12;
+          _context.t0 = _context["catch"](0);
+          console.log('error retriving calculations: ', _context.t0);
+        case 15:
         case "end":
           return _context.stop();
       }
-    }, _callee);
+    }, _callee, null, [[0, 12]]);
   }));
   return _submitForm.apply(this, arguments);
 }
