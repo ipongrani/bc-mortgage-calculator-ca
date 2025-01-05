@@ -1,5 +1,7 @@
 # Canada BC Mortgage Calculator
 
+![alt text](image-1.png)
+
 This project showcases BC Mortgage Calculator implemented in Node.js and Express.js
 
 ### Specifications:
@@ -23,18 +25,19 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 ### Requirements:
 - Node.js (V20.12.0 LTS)
 
-*Dependencies*
-- Express.js
 
-*Dev Dependencies*
-- babel
-- jest
-- webpack
-- webpack-cli
-- babel-jest
-- babel-loader
-- jest-webpack
-- nodemon
+| Dependencies     | Dev Dependencies  
+|------------------|-----------------------------
+| Express.js       | babel            
+|                  | jest 
+|                  | webpack  
+|                  | webpack-cli
+|                  | babel-jest
+|                  | babel-loader
+|                  | jest-webpack
+|                  | nodemon
+
+
 
 
 
