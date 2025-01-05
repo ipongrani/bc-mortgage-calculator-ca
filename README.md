@@ -187,6 +187,8 @@ The response will be displayed in a column format including the CHMC rates. The 
 
 Errors are displayed in the column panel.
 
+![alt text](image-4.png)
+
 ## Core
 
 The application follows the following formula

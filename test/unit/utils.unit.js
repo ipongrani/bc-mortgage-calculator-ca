@@ -8,7 +8,8 @@ const {
     convertCurrencyToNumber,
     validAmmortizationPeriod,
     convertToNumeric,
-    validatePaymentSchedule
+    validatePaymentSchedule,
+    validateDownpayment
 } = utilities;
 
 
@@ -116,6 +117,60 @@ export const util_validatePaymentSchedule = () => describe('Utilities: validateP
         });
     });
 })
+
+
+
+
+export const util_validateDownpayment = () => describe('Utilities: validateDownpayment', () => {
+    test('should return true for valid downpayment of at least 5% of loanPrincipal', () => {
+        expect(validateDownpayment(100000, 5000)).toBe(true);
+        expect(validateDownpayment(200000, 10000)).toBe(true);
+        expect(validateDownpayment(500000, 25000)).toBe(true);
+    });
+
+    test('should return false for downpayment less than 5% of loanPrincipal', () => {
+        expect(validateDownpayment(100000, 4999)).toBe(false);
+        expect(validateDownpayment(200000, 9999)).toBe(false);
+        expect(validateDownpayment(500000, 24999)).toBe(false);
+    });
+
+    test('should return false for negative downpayment or loanPrincipal', () => {
+        expect(validateDownpayment(-100000, 5000)).toBe(false);
+        expect(validateDownpayment(100000, -5000)).toBe(false);
+        expect(validateDownpayment(-100000, -5000)).toBe(false);
+    });
+
+    test('should return false for zero or negative loanPrincipal', () => {
+        expect(validateDownpayment(0, 5000)).toBe(false);
+        expect(validateDownpayment(-100000, 5000)).toBe(false);
+    });
+
+    test('should return false for non-number inputs', () => {
+        expect(validateDownpayment('100000', 5000)).toBe(false);
+        expect(validateDownpayment(100000, '5000')).toBe(false);
+        expect(validateDownpayment('100000', '5000')).toBe(false);
+        expect(validateDownpayment(null, 5000)).toBe(false);
+        expect(validateDownpayment(100000, undefined)).toBe(false);
+    });
+
+    test('should handle edge cases', () => {
+        expect(validateDownpayment(100000, 5000)).toBe(true); // Exactly 5%
+        expect(validateDownpayment(100000, 5001)).toBe(true); // Slightly above 5%
+        expect(validateDownpayment(100000, 4999)).toBe(false); // Slightly below 5%
+        expect(validateDownpayment(100000, 0)).toBe(false); // Downpayment of 0
+    });
+
+    test('should handle very large numbers', () => {
+        expect(validateDownpayment(1e9, 5e7)).toBe(true); // Large valid input
+        expect(validateDownpayment(1e9, 4.9e7)).toBe(false); // Slightly below the threshold
+    });
+
+    test('should handle small numbers and edge cases', () => {
+        expect(validateDownpayment(100, 5)).toBe(true); // Exactly 5%
+        expect(validateDownpayment(100, 4.99)).toBe(false); // Below 5%
+    });
+});
+
 
 export const util_convertToNumeric = () => describe('Utilities: convertToNumeric', () => {
 

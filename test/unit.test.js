@@ -8,7 +8,8 @@ import {
     util_isNonNegativeNumber,
     util_validAmmortizationPeriod,
     util_convertToNumeric,
-    util_validatePaymentSchedule
+    util_validatePaymentSchedule,
+    util_validateDownpayment
 } from './unit/utils.unit.js';
 
 
@@ -24,6 +25,7 @@ describe('Utilities Functionality Unit Testing', () => {
     util_isEmpty();
     util_isNonNegativeNumber();
     util_validAmmortizationPeriod();
+    util_validateDownpayment();
 })
 
 describe('Core Functionality Unit Testing', () => {
