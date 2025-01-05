@@ -112,7 +112,7 @@ npm run serve:api-dist
 ```
 # Usage
 
-After getting things up and running, There are 2 endpoints open for this application:
+After getting things up and running the server, it is accessible at http://localhost:3000/. There are 2 endpoints open for this application:
 ```
 /loadClientScript - GET
 /calculateMortgage - POST
