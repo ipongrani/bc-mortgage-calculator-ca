@@ -172,12 +172,16 @@ The endpoint returns back a *`JSON Response`* like the Following:
 ```
 ## User Interface
 ![alt text](image-1.png)
+
 The `UI` is built with `HTML, CSS, and Vanilla Javascript`. The files are located under the `public` directory in the API. While this folder is publicly served the `javascript` files are served via the `/loadClientScript`.
 
 ![alt text](image-2.png)
+
 The response will be displayed in a column format including the CHMC rates. The CHMC rates are based on the following [guidelines](./core/README.md#cmhc-general-guidelines).  
 
+
 ![alt text](image-3.png)
+
 Errors are displayed in the column panel.
 
 ## Core
