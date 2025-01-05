@@ -41,9 +41,15 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 # Table of Contents
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
+    - [user interface](#user-interface)
     - [core](#core)
-- [Installation](#installation)
-- [FAQs](#faqs)
+    - [api](./api/README.md)
+- [Development](#development)
+- [Components](#components)
+- [Test](#test)
+    - [Test Guidelines](./test/README.md) 
+    - [unit](./test/README.md#unit-testing) 
+    - [integration](./test/README.md#integration-testing) 
 
 
 
@@ -164,6 +170,15 @@ The endpoint returns back a *`JSON Response`* like the Following:
     }
 }
 ```
+## User Interface
+![alt text](image-1.png)
+The `UI` is built with `HTML, CSS, and Vanilla Javascript`. The files are located under the `public` directory in the API. While this folder is publicly served the `javascript` files are served via the `/loadClientScript`.
+
+![alt text](image-2.png)
+The response will be displayed in a column format including the CHMC rates. The CHMC rates are based on the following [guidelines](./core/README.md#cmhc-general-guidelines).  
+
+![alt text](image-3.png)
+Errors are displayed in the column panel.
 
 ## Core
 
@@ -194,7 +209,7 @@ sudo chmod +x ./setup.sh
 sudo chmod +x ./testAll.sh
 ```
 
-### components
+### Components
 
 API - the front facing component of the app
 
@@ -206,7 +221,7 @@ UTILS - contains supporting functions that help the system like validations and 
 Each of the component can be bundled up separately and reused. This is especially useful for components such as the *core* and *utils* where the logic is generic and can be utilized in other applications. The webpack target can also be configured for web and potentially offload *core* or *utils* into the browser to improve resource management.
 
 
-## Tests
+## Test
 
 The systems comes with both unit and integration tests using JEST. The unit is a comprehensive set of checks ensuring each function in the API, CORE, and UTILS are returning what is expected. The supporting functions/helpers are mocked to focus more on the components being tested.
 
@@ -221,4 +236,4 @@ or to run all the test
 ```
 npm run test
 ```
-
+Read more about [Test Guidelines](./test/README.md) 
