@@ -1,6 +1,6 @@
 # Canada BC Mortgage Calculator
 
-![alt text](image-1.png)
+![alt text](image-6.png)
 
 This project showcases BC Mortgage Calculator implemented in Node.js and Express.js
 
@@ -174,7 +174,7 @@ The endpoint returns back a *`JSON Response`* like the Following:
 }
 ```
 ## User Interface
-![alt text](image-1.png)
+![alt text](image-7.png)
 
 The `UI` is built with `HTML, CSS, and Vanilla Javascript`. The files are located under the `public` directory in the API. While this folder is publicly served the `javascript` files are served via the `/loadClientScript`.
 
