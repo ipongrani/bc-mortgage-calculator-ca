@@ -19,11 +19,14 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - Payment per payment schedule
 - An error if the inputs are not valid. This includes cases where the down payment is not large enough.
 
+
 ### Requirements:
 - Node.js (V20.12.0 LTS)
+
+*Dependencies*
 - Express.js
 
-*Dev Requirments*
+*Dev Dependencies*
 - babel
 - jest
 - webpack
@@ -34,7 +37,20 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - nodemon
 
 
-## Setup
+
+# Table of Contents
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+    - [core](#core)
+- [Installation](#installation)
+- [FAQs](#faqs)
+
+
+
+
+# Setup and Installation
+
+QUICK SETUP:
 
 Please make sure the *setup.sh* has enough privilege. Otherwise can be performed with the following command in Linux Terminal
 ```
@@ -45,6 +61,23 @@ and then run
 npm run setup
 ```
 The script will install the necessary dependencies for the application to run.
+
+
+STEPS:
+
+The application needs to be setup in a specific order: *`UTILS`, `CORE`, `API`*
+
+Each component has its own setup script that can be called:
+```
+npm run setup
+```
+The command will install the necessary dependencies and build a dist version.
+
+After installing the three components, proceed installing the *`ROOT DIRECTORY`* with 
+```
+npm i
+```
+
 
 ## Build
 ```
@@ -57,6 +90,7 @@ npm run build:core
 npm run build:utils
 ```
 
+
 ## Running API
 
 to run the development version
@@ -66,6 +100,69 @@ npm run serve:api
 to run the build version
 ```
 npm run serve:api-dist
+```
+# Usage
+
+After getting things up and running, There are 2 endpoints open for this application:
+```
+/loadClientScript - GET
+/calculateMortgage - POST
+```
+The default route `/` is used to serve the `HTML` and `CSS` page. The webpage, stylesheet, and other assets reside under the `public` folder in the API. The `/loadClientScript` is used to retrieve the javascript used for the frontend. `/calculateMortgage` accepts a *`JSON Payload`* :
+```
+Sample:
+
+1.
+
+{
+  "paymentSchedule": "bi-weekly",
+  "propertyPrice": "$920000.00",
+  "downPayment": "$73600.00",
+  "ammortizationPeriod": "25",
+  "annualInterestRate": "0.05"
+}
+
+
+2.
+
+{
+    "propertyPrice": "$500,000",
+    "downPayment": "$100,000",
+    "annualInterestRate": 0.05,
+    "paymentSchedule": "accelerated-bi-weekly",
+    "ammortizationPeriod": 25
+}
+
+
+3.
+
+{
+    "propertyPrice": "$750,000",
+    "downPayment": "$120,000",
+    "annualInterestRate": 0.05,
+    "paymentSchedule": "monthly",
+    "ammortizationPeriod": 25
+}
+```
+
+The endpoint returns back a *`JSON Response`* like the Following:
+```
+{
+    "loanPrincipal": 630000,
+    "cmhcAdjustedLoanPrincipal": 647640,
+    "annualInterestRate": 0.05,
+    "ammortizationPeriod": 25,
+    "paymentSchedule": "monthly",
+    "periodicInterestRate": 0.004167,
+    "totalPaymentCount": 300,
+    "paymentPerSchedule": 3786.19,
+    "cmhc": {
+        "premiumRate": 0.028,
+        "premiumPercent": "2.8%",
+        "premiumAmount": 17640,
+        "principalWithPremium": 647640
+    }
+}
 ```
 
 ## Core

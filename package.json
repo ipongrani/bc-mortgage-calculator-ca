@@ -14,7 +14,7 @@
     "build:core": "cd core && npx webpack",
     "build:utils": "cd utils && npx webpack",
     "serve:api": "npx nodemon --exec ./dev.sh",
-    "serve:api-dist": "node ./api/dist/server.bundle.cjs",
+    "serve:api-dist": "node ./api/dist/api.bundle.js",
     "serve:core": "cd ./core && npx nodemon --exec npx webpack --watch",
     "serve:utils": "cd ./utils && npx nodemon --exec npx webpack --watch "
   },
