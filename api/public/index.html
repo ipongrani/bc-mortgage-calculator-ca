@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; object-src 'none'; base-uri 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheet.css" media="screen and (min-width: 320px)">
+    <script type="module" src="/loadClientScript"></script>
+    <title>BC Mortgage Calculator</title>
+ 
+  </head>
+ 
+  <body>
+    <div id="main">
+      <h1>BC Canada Mortgage Calculator</h1>
+      <form method="POST" action="/calculateMortgage">
+          <div class="formFields">
+            <label for="propertyPrice">Property Price</label>
+            <input 
+                type="text" 
+                id="propertyPrice" 
+                name="propertyPrice" 
+                placeholder="e.g., $1000.50 or 1000.50" 
+                pattern="^\$?\d+(\.\d+)?$" 
+                required
+            >
+          </div>
+          <br>
+          <div class="formFields">
+            <label for="downPayment">Down Payment</label>
+            <input 
+                type="text" 
+                id="downPayment" 
+                name="downPayment" 
+                placeholder="$0.00" 
+                pattern="^\$?\d+(\.\d+)?$"
+                required
+              >
+          </div>
+          <br>
+          <div class="formFields">
+            <label for="ammortizationPeriod">Ammortization Period</label>
+            <input 
+                type="number" 
+                id="ammortizationPeriod" 
+                name="ammortizationPeriod" 
+                step="5" 
+                required
+            >
+          </div>
+          <br>
+          <div class="formFields">
+            <label for="paymentSchedule">Payment Schedule</label>
+            <select id="paymentSchedule" name="paymentSchedule" required>
+                <option value="" disabled selected>-- Select an option --</option>
+                <option value="monthly">monthly</option>
+                <option value="bi-weekly">bi-weekly</option>
+                <option value="accelerated-bi-weekly">accelerated bi-weekly</option>
+            </select>
+          </div>
+          <br>
+          <div class="formFields">
+            <label for="annualInterestRate">Annual Rate:</label>
+            <input 
+                type="number" 
+                id="annualInterestRate" 
+                name="annualInterestRate" 
+                min="0" 
+                max="100" 
+                step="0.01" 
+                placeholder="Annual Rate"
+                required
+            >
+          </div>
+          <br>
+          <div id="btnContainer">
+            <button class='btn' id='resetForm' type="button">Reset</button>
+            <button class='btn' id='submitForm' type="submit">Submit</button>
+          </div>
+          
+      </form>
+
+      <div id="displayPanel">
+      </div>
+    </div>
+  </body>
+</html>

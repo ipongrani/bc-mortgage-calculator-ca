@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'OpenSans'; 
+    src: url('./assets/fonts/OpenSans/OpenSans-VariableFont_wdth\,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PoppinsBold'; 
+    src: url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PoppinsRegular'; 
+    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    background-color: hsl(203.11deg 100% 94.69%);
+    font-family: 'OpenSans', sans-serif;
+}
+
+h1 {
+    font-family: 'PoppinsRegular', sans-serif;
+}
+
+#main {
+    padding: 60px 32px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#displayPanel {
+    padding: 24px;
+    margin-top: 24px;
+    width: 360px;
+    min-height: 30px;
+    border: 1px solid #dde9dc;
+    border-left: 2px solid #c8d5c7;
+    border-radius: 9px;
+    background-color: hsl(203.11deg 83.07% 96.22%);
+    box-shadow: 4px 6px 2px 1px hsl(203.11deg 27.98% 75.06%);
+    visibility: hidden;
+}
+
+form {
+    margin-top: 24px;
+    padding: 24px;
+    width: 360px;
+    border: 1px solid #dde9dc;
+    border-left: 2px solid #c8d5c7;
+    border-radius: 9px;
+    background-color: hsl(203.11deg 83.07% 96.22%);
+    box-shadow: 4px 6px 2px 1px hsl(203.11deg 27.98% 75.06%);
+}
+
+.formFields {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+#btnContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 100px;
+}
+
+
+div.col {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 9px;
+}
+
+div.row {
+    display: flex;
+    flex-flow: column nowrap;
+}

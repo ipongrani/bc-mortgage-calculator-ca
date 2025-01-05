@@ -5,6 +5,7 @@ export default {
   mode: "development",
   target: "node",
   entry: "./index.js",
+  devtool: 'source-map',
   output: {
     path: path.resolve("dist"),
     filename: "core.bundle.js",

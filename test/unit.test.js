@@ -6,7 +6,9 @@ import {
     util_formatToDecimalPoint,
     util_isEmpty,
     util_isNonNegativeNumber,
-    util_validAmmortizationPeriod
+    util_validAmmortizationPeriod,
+    util_convertToNumeric,
+    util_validatePaymentSchedule
 } from './unit/utils.unit.js';
 
 
@@ -15,6 +17,8 @@ import {
 
 
 describe('Utilities Functionality Unit Testing', () => {
+    util_validatePaymentSchedule();
+    util_convertToNumeric();
     util_convertCurrencyToNumber();
     util_formatToDecimalPoint();
     util_isEmpty();
