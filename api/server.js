@@ -1,9 +1,19 @@
 import express from 'express';
 import core from '../core/dist/core.bundle.js';
 import utilities from '../utils/dist/utilities.bundle.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+
 
 const {
-    convertCurrencyToNumber
+    convertCurrencyToNumber,
+    convertToNumeric
 } = utilities;
 
 const {
@@ -22,9 +32,16 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // GET
-app.get('/', async (req, res) => {
+app.get('/hello', async (req, res) => {
     return res.status(200).json({hello: "world"});
+});
+
+app.get('/loadClientScript', async (req, res) => {
+    const jsScriptPath = path.join(__dirname, 'dist', 'client.bundle.js');
+    return res.status(200).sendFile(jsScriptPath);
 });
 
 // POST
@@ -44,22 +61,23 @@ app.post('/calculateMortgage', async (req, res) => {
     
     const cleanPropertPrice = convertCurrencyToNumber(propertyPrice);
     const cleanDownpayment = convertCurrencyToNumber(downPayment);
-
+    const cleanAnnualInterestRate = convertToNumeric(annualInterestRate)
+    const cleanAmmortizationPeriod = convertToNumeric(ammortizationPeriod)
     const {
         loanPrincipal,
         downpaymentRate,
     } = calculateLoanPrincipal(cleanPropertPrice, cleanDownpayment);
-
     const calculatedCmhcPremium = cmhcPremiumCalculator(loanPrincipal, downpaymentRate);
     const usePrincipal = calculatedCmhcPremium ? calculatedCmhcPremium.principalWithPremium : loanPrincipal;
-    const { periodicInterestRate } = calculatePeriodicInterest(annualInterestRate, paymentSchedule);
-    const totalNumberOfPayments = calculateTotalNumberOfPayments(ammortizationPeriod, paymentSchedule);
+    const { periodicInterestRate } = calculatePeriodicInterest(cleanAnnualInterestRate, paymentSchedule);
+    const totalNumberOfPayments = calculateTotalNumberOfPayments(cleanAmmortizationPeriod, paymentSchedule);
     const computedPaymentPerSchedule = calculateMortage(usePrincipal, periodicInterestRate, totalNumberOfPayments);
 
     const respoonse = {
         loanPrincipal,
         cmhcAdjustedLoanPrincipal: usePrincipal,
-        annualInterestRate,
+        annualInterestRate: cleanAnnualInterestRate,
+        ammortizationPeriod: cleanAmmortizationPeriod,
         paymentSchedule,
         periodicInterestRate,
         totalPaymentCount: totalNumberOfPayments,

@@ -6,7 +6,9 @@ const {
     isEmpty,
     isNonNegativeNumber,
     convertCurrencyToNumber,
-    validAmmortizationPeriod
+    validAmmortizationPeriod,
+    convertToNumeric,
+    validatePaymentSchedule
 } = utilities;
 
 
@@ -36,6 +38,145 @@ export const util_convertCurrencyToNumber = () => describe('Utilities: convertCu
     it('should return back original if already acceptable number', async () => {
         const response = convertCurrencyToNumber(100000);
         expect(response).toBe(100000);
+    });
+})
+
+export const util_validatePaymentSchedule = () => describe('Utilities: validatePaymentSchedule', () => {
+
+    const validSchedules = {
+        'accelerated-bi-weekly': 26,
+        'bi-weekly': 24,
+        'monthly': 12,
+    };
+
+    it('should return 26 for "accelerated-bi-weekly"', () => {
+        const result = validatePaymentSchedule('accelerated-bi-weekly');
+        expect(result).toBe(26);
+    });
+
+    it('should return 24 for "bi-weekly"', () => {
+        const result = validatePaymentSchedule('bi-weekly');
+        expect(result).toBe(24);
+    });
+
+    it('should return 12 for "monthly"', () => {
+        const result = validatePaymentSchedule('monthly');
+        expect(result).toBe(12);
+    });
+
+    it('should return false for an invalid schedule', () => {
+        const result = validatePaymentSchedule('weekly');
+        expect(result).toBe(false);
+    });
+
+    it('should return false for an empty string', () => {
+        const result = validatePaymentSchedule('');
+        expect(result).toBe(false);
+    });
+
+    it('should return false for null input', () => {
+        const result = validatePaymentSchedule(null);
+        expect(result).toBe(false);
+    });
+
+    it('should return false for undefined input', () => {
+        const result = validatePaymentSchedule(undefined);
+        expect(result).toBe(false);
+    });
+
+    it('should return false for a number input', () => {
+        const result = validatePaymentSchedule(12);
+        expect(result).toBe(false);
+    });
+
+    it('should return false for a boolean input', () => {
+        const result = validatePaymentSchedule(true);
+        expect(result).toBe(false);
+    });
+
+    it('should return false for an object input', () => {
+        const result = validatePaymentSchedule({ schedule: 'monthly' });
+        expect(result).toBe(false);
+    });
+
+    it('should return false for an array input', () => {
+        const result = validatePaymentSchedule(['monthly']);
+        expect(result).toBe(false);
+    });
+
+    it('should return the correct value for case-sensitive inputs', () => {
+        const result = validatePaymentSchedule('Monthly');
+        expect(result).toBe(false); // Should fail because it's case-sensitive
+    });
+
+    it('should correctly validate all allowed schedules', () => {
+        Object.keys(validSchedules).forEach((schedule) => {
+            const result = validatePaymentSchedule(schedule);
+            expect(result).toBe(validSchedules[schedule]);
+        });
+    });
+})
+
+export const util_convertToNumeric = () => describe('Utilities: convertToNumeric', () => {
+
+    it('should return null for boolean true', () => {
+        const response = convertToNumeric(true);
+        expect(response).toBe(null);
+    });
+
+    it('should return null for boolean false', () => {
+        const response = convertToNumeric(false);
+        expect(response).toBe(null);
+    });
+
+    it('should handle large numbers as valid', () => {
+        const response = convertToNumeric(1e10);
+        expect(response).toBe(1e10);
+    });
+
+    it('should return null for negative infinity', () => {
+        const response = convertToNumeric(-Infinity);
+        expect(response).toBe(null);
+    });
+
+    it('should return null for positive infinity', () => {
+        const response = convertToNumeric(Infinity);
+        expect(response).toBe(null);
+    });
+
+    it('should return null for a string with whitespace', () => {
+        const response = convertToNumeric("   ");
+        expect(response).toBe(null);
+    });
+
+    it('should return the parsed float for a string with leading or trailing spaces', () => {
+        const response = convertToNumeric("  10.25  ");
+        expect(response).toBe(10.25);
+    });
+
+    it('should return the original value for zero', () => {
+        const response = convertToNumeric(0);
+        expect(response).toBe(0);
+    });
+
+    it('should return the parsed float for a valid non-negative string number', () => {
+        const response = convertToNumeric("100");
+        expect(response).toBe(100);
+    });
+
+    it('should return the parsed float for a valid decimal string number', () => {
+        const response = convertToNumeric("50.5");
+        expect(response).toBe(50.5);
+    });
+
+    it('should return the parsed float for a valid decimal number', () => {
+        const response = convertToNumeric(0.05);
+        expect(response).toBe(0.05);
+    });
+
+    it('should return the parsed float for a string representation of zero', () => {
+        const response = convertToNumeric("0");
+        expect(response).toBe(0);
     });
 })
 
