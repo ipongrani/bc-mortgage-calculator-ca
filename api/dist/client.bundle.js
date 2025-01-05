@@ -129,26 +129,47 @@ function resultsFormatter(jsonResponse) {
   displayPanel.appendChild(panelRow1);
 
   // Second row for cmhc properties
-  var cmhcKeys = Object.keys(cmhc);
-  var panelRow2 = document.createElement('div');
-  panelRow2.classList.add('row');
-  cmhcKeys.forEach(function (key) {
-    var value = cmhc[key];
+  // Check if cmhc is an object before proceeding
+  if (cmhc && _typeof(cmhc) === 'object' && !Array.isArray(cmhc)) {
+    // Second row for cmhc properties
+    var cmhcKeys = Object.keys(cmhc);
+    var panelRow2 = document.createElement('div');
+    panelRow2.classList.add('row');
+    cmhcKeys.forEach(function (key) {
+      var value = cmhc[key];
+      var panelCol = document.createElement('div');
+      panelCol.classList.add('col');
+      var colLabel = document.createElement('label');
+      colLabel.setAttribute('for', key);
+      colLabel.textContent = (0,_formatLabel_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key, 'CMHC ');
+      panelCol.appendChild(colLabel);
+      var colInput = document.createElement('input');
+      colInput.setAttribute('id', key);
+      colInput.setAttribute('type', 'text');
+      colInput.value = value && _typeof(value) === 'object' && 'error' in value ? value.error : value;
+      colInput.disabled = true;
+      panelCol.appendChild(colInput);
+      panelRow2.appendChild(panelCol);
+    });
+    displayPanel.appendChild(panelRow2);
+  } else {
+    // Handle non-object cmhc cases (e.g., string or null)
+    var _panelRow = document.createElement('div');
+    _panelRow.classList.add('row');
     var panelCol = document.createElement('div');
     panelCol.classList.add('col');
     var colLabel = document.createElement('label');
-    colLabel.setAttribute('for', key);
-    colLabel.textContent = (0,_formatLabel_js__WEBPACK_IMPORTED_MODULE_0__["default"])(key, 'CMHC ');
+    colLabel.textContent = 'CMHC';
     panelCol.appendChild(colLabel);
     var colInput = document.createElement('input');
-    colInput.setAttribute('id', key);
+    colInput.setAttribute('id', 'cmhc-error');
     colInput.setAttribute('type', 'text');
-    colInput.value = value && _typeof(value) === 'object' && 'error' in value ? value.error : value;
+    colInput.value = cmhc; // Display the string directly (e.g., "not_required")
     colInput.disabled = true;
     panelCol.appendChild(colInput);
-    panelRow2.appendChild(panelCol);
-  });
-  displayPanel.appendChild(panelRow2);
+    _panelRow.appendChild(panelCol);
+    displayPanel.appendChild(_panelRow);
+  }
   displayPanel.style.visibility = 'visible';
 }
 
