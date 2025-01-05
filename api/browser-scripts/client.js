@@ -7,17 +7,21 @@ import resetForm from './resetForm.js';
 
 
 async function submitForm(event) {
-    event.preventDefault();
-    const userInputs = collectInputs();
-    const response = await fetch('/calculateMortgage', {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json', 
-        },
-        body: JSON.stringify(userInputs) 
-    });
-    const jsonResponse = await response.json();
-    resultsFormatter(jsonResponse);
+    try {
+        event.preventDefault();
+        const userInputs = collectInputs();
+        const response = await fetch('/calculateMortgage', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify(userInputs) 
+        });
+        const jsonResponse = await response.json();
+        resultsFormatter(jsonResponse);
+    } catch(error) {
+        console.log('error retriving calculations: ', error);
+    }
 }
 
 
