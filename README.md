@@ -31,7 +31,6 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 - babel-jest
 - babel-loader
 - jest-webpack
-- supertest
 - nodemon
 
 

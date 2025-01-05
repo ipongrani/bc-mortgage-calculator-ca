@@ -71,8 +71,8 @@ export const integrations_mortgageWithCMHC = () => describe('Integrations: Calcu
             const { premiumRate, premiumAmount } = calculatedCmhcPremium;
             expect(premiumRate).toBeGreaterThan(0);
             expect(premiumAmount).toBeGreaterThan(0);
-            const { cmhcPremium } = sampleCase;
-            expect(calculatedCmhcPremium).toEqual(cmhcPremium);
+            const { cmhc } = sampleCase;
+            expect(calculatedCmhcPremium).toEqual(cmhc);
         } else {
             expect(calculatedCmhcPremium).toBeNull();
         }
