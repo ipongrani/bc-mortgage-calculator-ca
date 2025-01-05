@@ -13,7 +13,8 @@ const __dirname = path.dirname(__filename);
 
 const {
     convertCurrencyToNumber,
-    convertToNumeric
+    convertToNumeric,
+    validateDownpayment
 } = utilities;
 
 
@@ -53,9 +54,13 @@ app.post('/calculateMortgage', async (req, res) => {
         paymentSchedule,
         ammortizationPeriod
     } = body;
-    
+
+
     const cleanPropertPrice = convertCurrencyToNumber(propertyPrice);
     const cleanDownpayment = convertCurrencyToNumber(downPayment);
+    if (!validateDownpayment(cleanPropertPrice, cleanDownpayment)) {
+        return res.status(403).json({error: 'down payment needs to be at least 5% of property price'});
+    }
     const cleanAnnualInterestRate = convertToNumeric(annualInterestRate)
     const cleanAmmortizationPeriod = convertToNumeric(ammortizationPeriod);
     const response = calculateRates(

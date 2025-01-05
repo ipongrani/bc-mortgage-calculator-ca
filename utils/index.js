@@ -5,7 +5,7 @@ import validAmmortizationPeriod from './src/validateAmmortizationPeriod.js';
 import validatePaymentSchedule from "./src/validatePaymentSchedule.js";
 import convertCurrencyToNumber from "./src/convertCurrencyToNumber.js";
 import convertToNumeric from "./src/convertToNumeric.js";
-
+import validateDownpayment from "./src/validateDownpayment.js";
 
 
 const utilities = {
@@ -15,7 +15,8 @@ const utilities = {
     validAmmortizationPeriod,
     validatePaymentSchedule,
     convertCurrencyToNumber,
-    convertToNumeric
+    convertToNumeric,
+    validateDownpayment
 };
 
 export default utilities;

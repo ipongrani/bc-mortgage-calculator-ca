@@ -24878,7 +24878,7 @@ var r = {
         }
       });
       var n = t("../utils/dist/utilities.bundle.js"),
-        i = (t("./src/cmhcPremiumCalculator.js"), n["default"].isEmpty),
+        i = n["default"].isEmpty,
         a = n["default"].isNonNegativeNumber,
         o = n["default"].formatToDecimalPoint;
       /** 
@@ -25182,6 +25182,16 @@ var r = {
               return !!Number.isInteger(r) && !(r < 5 || r > 30) && r % 5 == 0;
             };
           },
+          "./src/validateDownpayment.js": function _src_validateDownpaymentJs(r, e, t) {
+            function n(r, e) {
+              return !("number" != typeof r || "number" != typeof e || r <= 0 || e < 0) && e >= .05 * r;
+            }
+            t.r(e), t.d(e, {
+              "default": function _default() {
+                return n;
+              }
+            });
+          },
           "./src/validatePaymentSchedule.js": function _src_validatePaymentScheduleJs(r, e, t) {
             t.r(e), t.d(e, {
               "default": function _default() {
@@ -25225,7 +25235,7 @@ var r = {
       !function () {
         a.r(o), a.d(o, {
           "default": function _default() {
-            return s;
+            return c;
           }
         });
         var r = a("./src/isNonNegativeNumber.js"),
@@ -25235,14 +25245,16 @@ var r = {
           i = a("./src/validatePaymentSchedule.js"),
           u = a("./src/convertCurrencyToNumber.js"),
           l = a("./src/convertToNumeric.js"),
-          s = {
+          s = a("./src/validateDownpayment.js"),
+          c = {
             isNonNegativeNumber: r["default"],
             isEmpty: e["default"],
             formatToDecimalPoint: t["default"],
             validAmmortizationPeriod: n["default"],
             validatePaymentSchedule: i["default"],
             convertCurrencyToNumber: u["default"],
-            convertToNumeric: l["default"]
+            convertToNumeric: l["default"],
+            validateDownpayment: s["default"]
           };
       }();
       var u = o["default"];
@@ -25304,7 +25316,7 @@ var i = n["default"];
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ o)
+/* harmony export */   "default": () => (/* binding */ a)
 /* harmony export */ });
 var e = {
     "./src/convertCurrencyToNumber.js": function _src_convertCurrencyToNumberJs(e, r, t) {
@@ -25384,10 +25396,20 @@ var e = {
         return !!Number.isInteger(e) && !(e < 5 || e > 30) && e % 5 == 0;
       };
     },
+    "./src/validateDownpayment.js": function _src_validateDownpaymentJs(e, r, t) {
+      function n(e, r) {
+        return !("number" != typeof e || "number" != typeof r || e <= 0 || r < 0) && r >= .05 * e;
+      }
+      t.r(r), t.d(r, {
+        "default": function _default() {
+          return n;
+        }
+      });
+    },
     "./src/validatePaymentSchedule.js": function _src_validatePaymentScheduleJs(e, r, t) {
       t.r(r), t.d(r, {
         "default": function _default() {
-          return o;
+          return a;
         }
       });
       var n = {
@@ -25395,19 +25417,19 @@ var e = {
         "bi-weekly": 24,
         monthly: 12
       };
-      var o = function o(e) {
+      var a = function a(e) {
         return !!Object.keys(n).includes(e) && (n[e] || null);
       };
     }
   },
   r = {};
 function t(n) {
-  var o = r[n];
-  if (void 0 !== o) return o.exports;
-  var a = r[n] = {
+  var a = r[n];
+  if (void 0 !== a) return a.exports;
+  var o = r[n] = {
     exports: {}
   };
-  return e[n](a, a.exports, t), a.exports;
+  return e[n](o, o.exports, t), o.exports;
 }
 t.d = function (e, r) {
   for (var n in r) t.o(r, n) && !t.o(e, n) && Object.defineProperty(e, n, {
@@ -25427,27 +25449,29 @@ var n = {};
 (function () {
   t.r(n), t.d(n, {
     "default": function _default() {
-      return l;
+      return c;
     }
   });
   var e = t("./src/isNonNegativeNumber.js"),
     r = t("./src/isEmpty.js"),
-    o = t("./src/formatToDecimal.js"),
-    a = t("./src/validateAmmortizationPeriod.js"),
+    a = t("./src/formatToDecimal.js"),
+    o = t("./src/validateAmmortizationPeriod.js"),
     u = t("./src/validatePaymentSchedule.js"),
     i = t("./src/convertCurrencyToNumber.js"),
-    s = t("./src/convertToNumeric.js");
-  var l = {
+    s = t("./src/convertToNumeric.js"),
+    l = t("./src/validateDownpayment.js");
+  var c = {
     isNonNegativeNumber: e["default"],
     isEmpty: r["default"],
-    formatToDecimalPoint: o["default"],
-    validAmmortizationPeriod: a["default"],
+    formatToDecimalPoint: a["default"],
+    validAmmortizationPeriod: o["default"],
     validatePaymentSchedule: u["default"],
     convertCurrencyToNumber: i["default"],
-    convertToNumeric: s["default"]
+    convertToNumeric: s["default"],
+    validateDownpayment: l["default"]
   };
 })();
-var o = n["default"];
+var a = n["default"];
 
 
 /***/ }),
@@ -25658,7 +25682,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 var __filename = (0,url__WEBPACK_IMPORTED_MODULE_3__.fileURLToPath)("file:///home/a10/nodejs_projects/mortgage_calculator/api/server.js");
 var __dirname = path__WEBPACK_IMPORTED_MODULE_2__.dirname(__filename);
 var convertCurrencyToNumber = _utils_dist_utilities_bundle_js__WEBPACK_IMPORTED_MODULE_1__["default"].convertCurrencyToNumber,
-  convertToNumeric = _utils_dist_utilities_bundle_js__WEBPACK_IMPORTED_MODULE_1__["default"].convertToNumeric;
+  convertToNumeric = _utils_dist_utilities_bundle_js__WEBPACK_IMPORTED_MODULE_1__["default"].convertToNumeric,
+  validateDownpayment = _utils_dist_utilities_bundle_js__WEBPACK_IMPORTED_MODULE_1__["default"].validateDownpayment;
 var app = express__WEBPACK_IMPORTED_MODULE_0__();
 var port = 3000;
 app.use(express__WEBPACK_IMPORTED_MODULE_0__.json());
@@ -25716,11 +25741,19 @@ app.post('/calculateMortgage', /*#__PURE__*/function () {
           propertyPrice = body.propertyPrice, downPayment = body.downPayment, annualInterestRate = body.annualInterestRate, paymentSchedule = body.paymentSchedule, ammortizationPeriod = body.ammortizationPeriod;
           cleanPropertPrice = convertCurrencyToNumber(propertyPrice);
           cleanDownpayment = convertCurrencyToNumber(downPayment);
+          if (validateDownpayment(cleanPropertPrice, cleanDownpayment)) {
+            _context3.next = 6;
+            break;
+          }
+          return _context3.abrupt("return", res.status(403).json({
+            error: 'down payment needs to be at least 5% of property price'
+          }));
+        case 6:
           cleanAnnualInterestRate = convertToNumeric(annualInterestRate);
           cleanAmmortizationPeriod = convertToNumeric(ammortizationPeriod);
           response = (0,_src_calculateRates_js__WEBPACK_IMPORTED_MODULE_4__["default"])(paymentSchedule, cleanPropertPrice, cleanDownpayment, cleanAnnualInterestRate, cleanAmmortizationPeriod);
           return _context3.abrupt("return", res.status(200).json(response));
-        case 8:
+        case 10:
         case "end":
           return _context3.stop();
       }

@@ -249,22 +249,23 @@ function _submitForm() {
           });
         case 5:
           response = _context.sent;
-          _context.next = 8;
+          console.log('jsonResponse: ', jsonResponse);
+          _context.next = 9;
           return response.json();
-        case 8:
+        case 9:
           jsonResponse = _context.sent;
           (0,_resultFormatter_js__WEBPACK_IMPORTED_MODULE_0__["default"])(jsonResponse);
-          _context.next = 15;
+          _context.next = 16;
           break;
-        case 12:
-          _context.prev = 12;
+        case 13:
+          _context.prev = 13;
           _context.t0 = _context["catch"](0);
           console.log('error retriving calculations: ', _context.t0);
-        case 15:
+        case 16:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 13]]);
   }));
   return _submitForm.apply(this, arguments);
 }

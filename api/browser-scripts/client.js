@@ -17,7 +17,10 @@ async function submitForm(event) {
             },
             body: JSON.stringify(userInputs) 
         });
+        
+        console.log('jsonResponse: ', jsonResponse)
         const jsonResponse = await response.json();
+        
         resultsFormatter(jsonResponse);
     } catch(error) {
         console.log('error retriving calculations: ', error);
