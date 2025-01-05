@@ -10,7 +10,7 @@
     "totalCountPayments": 300,
     "periodicInterestRate": 0.004167,
     "paymentPerSchedule": 3683.06,
-    "cmhcPremium":  {
+    "cmhc":  {
         "premiumRate": 0.028,
         "premiumPercent": "2.8%",
         "premiumAmount": 17640,
