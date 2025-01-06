@@ -23,7 +23,7 @@ found here: https://www.ratehub.ca/cmhc-insurance-british-columbia.
 
 
 ### Requirements:
-- Node.js (V20.12.0 LTS)
+- Node.js (V22.12.0 LTS)
 
 
 | Dependencies     | Dev Dependencies  
