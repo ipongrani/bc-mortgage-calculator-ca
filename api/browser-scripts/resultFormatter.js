@@ -35,55 +35,56 @@ export default function resultsFormatter(jsonResponse) {
 
     // Second row for cmhc properties
     // Check if cmhc is an object before proceeding
-if (cmhc && typeof cmhc === 'object' && !Array.isArray(cmhc)) {
-    // Second row for cmhc properties
-    const cmhcKeys = Object.keys(cmhc);
-    const panelRow2 = document.createElement('div');
-    panelRow2.classList.add('row');
+    if (cmhc && typeof cmhc === 'object' && !Array.isArray(cmhc)) {
+    
+        const cmhcKeys = Object.keys(cmhc);
+        const panelRow2 = document.createElement('div');
+        panelRow2.classList.add('row');
 
-    cmhcKeys.forEach((key) => {
-        const value = cmhc[key];
+        cmhcKeys.forEach((key) => {
+            const value = cmhc[key];
+            const panelCol = document.createElement('div');
+            panelCol.classList.add('col');
+
+            const colLabel = document.createElement('label');
+            colLabel.setAttribute('for', key);
+            colLabel.textContent = formatLabel(key, 'CMHC ');
+            panelCol.appendChild(colLabel);
+
+            const colInput = document.createElement('input');
+            colInput.setAttribute('id', key);
+            colInput.setAttribute('type', 'text');
+            colInput.value = (value && typeof value === 'object' && 'error' in value) ? value.error : value;
+            colInput.disabled = true;
+            panelCol.appendChild(colInput);
+
+            panelRow2.appendChild(panelCol);
+        });
+
+        displayPanel.appendChild(panelRow2);
+    } 
+    
+    if (typeof cmhc === 'string') {
+        const panelRow2 = document.createElement('div');
+        panelRow2.classList.add('row');
+
         const panelCol = document.createElement('div');
         panelCol.classList.add('col');
 
         const colLabel = document.createElement('label');
-        colLabel.setAttribute('for', key);
-        colLabel.textContent = formatLabel(key, 'CMHC ');
+        colLabel.textContent = 'CMHC';
         panelCol.appendChild(colLabel);
 
         const colInput = document.createElement('input');
-        colInput.setAttribute('id', key);
+        colInput.setAttribute('id', 'cmhc-error');
         colInput.setAttribute('type', 'text');
-        colInput.value = (value && typeof value === 'object' && 'error' in value) ? value.error : value;
+        colInput.value = cmhc || '';
         colInput.disabled = true;
         panelCol.appendChild(colInput);
 
         panelRow2.appendChild(panelCol);
-    });
-
-    displayPanel.appendChild(panelRow2);
-} else {
-    // Handle non-object cmhc cases (e.g., string or null)
-    const panelRow2 = document.createElement('div');
-    panelRow2.classList.add('row');
-
-    const panelCol = document.createElement('div');
-    panelCol.classList.add('col');
-
-    const colLabel = document.createElement('label');
-    colLabel.textContent = 'CMHC';
-    panelCol.appendChild(colLabel);
-
-    const colInput = document.createElement('input');
-    colInput.setAttribute('id', 'cmhc-error');
-    colInput.setAttribute('type', 'text');
-    colInput.value = cmhc; // Display the string directly (e.g., "not_required")
-    colInput.disabled = true;
-    panelCol.appendChild(colInput);
-
-    panelRow2.appendChild(panelCol);
-    displayPanel.appendChild(panelRow2);
-}
+        displayPanel.appendChild(panelRow2);
+    }
 
     displayPanel.style.visibility = 'visible';
 }

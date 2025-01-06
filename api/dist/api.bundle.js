@@ -25745,7 +25745,7 @@ app.post('/calculateMortgage', /*#__PURE__*/function () {
             _context3.next = 6;
             break;
           }
-          return _context3.abrupt("return", res.status(403).json({
+          return _context3.abrupt("return", res.status(400).json({
             error: 'down payment needs to be at least 5% of property price'
           }));
         case 6:

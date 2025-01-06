@@ -131,7 +131,6 @@ function resultsFormatter(jsonResponse) {
   // Second row for cmhc properties
   // Check if cmhc is an object before proceeding
   if (cmhc && _typeof(cmhc) === 'object' && !Array.isArray(cmhc)) {
-    // Second row for cmhc properties
     var cmhcKeys = Object.keys(cmhc);
     var panelRow2 = document.createElement('div');
     panelRow2.classList.add('row');
@@ -152,8 +151,8 @@ function resultsFormatter(jsonResponse) {
       panelRow2.appendChild(panelCol);
     });
     displayPanel.appendChild(panelRow2);
-  } else {
-    // Handle non-object cmhc cases (e.g., string or null)
+  }
+  if (typeof cmhc === 'string') {
     var _panelRow = document.createElement('div');
     _panelRow.classList.add('row');
     var panelCol = document.createElement('div');
@@ -164,7 +163,7 @@ function resultsFormatter(jsonResponse) {
     var colInput = document.createElement('input');
     colInput.setAttribute('id', 'cmhc-error');
     colInput.setAttribute('type', 'text');
-    colInput.value = cmhc; // Display the string directly (e.g., "not_required")
+    colInput.value = cmhc || '';
     colInput.disabled = true;
     panelCol.appendChild(colInput);
     _panelRow.appendChild(panelCol);
